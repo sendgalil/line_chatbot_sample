@@ -2,6 +2,7 @@
 a line chatbot sample
 
 目前正在測試中
+
 由python的line-bot-sdk寫成
 一個簡單的rule-based機械人
 chatbot_object.py:機械人的物件封裝
