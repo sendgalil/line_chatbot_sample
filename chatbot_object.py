@@ -17,7 +17,7 @@ from linebot.exceptions import (
 from linebot.models import *
 
 class chatbot(object):
-    def __init__(self, client_id, client_secret, handler, question_data_path, 
+    def __init__(self, client_id, client_secret, question_data_path, 
                  response_data_path):
         with open(question_data_path) as f:
             question_data = json.load(f)
@@ -25,7 +25,6 @@ class chatbot(object):
             response_data = json.load(f)
         short_token = self.get_short_token(client_id, client_secret)
         self.line_bot_api = LineBotApi(short_token)
-        self.handler = WebhookHandler(handler)
         self.template_data = self.create_template(question_data)
         self.response_data = self.create_response(response_data)
         self.user_list = {}
@@ -78,7 +77,7 @@ class chatbot(object):
                          'report_message':''}
         #依據自定義的任務創建回覆的框架訊息
         if task == '建議與問題回報':            
-            task_template['task'] = 'problem_return_and_advice'
+            task_template['task'] = 'suggestion'
             self.user_list[uid] = task_template
             response_text = ('感謝您的使用，請直接輸入您的問題或是建議，想離開的話'
                             '請按結束回報即可')
@@ -99,7 +98,7 @@ class chatbot(object):
                                     ]
                                 )
                             )
-        elif task == '搜尋資料':
+        elif task == 'search':
             task_template['task'] = 'search'
             self.user_list[uid] = task_template
             response_text = '請直接輸入關鍵字即可搜尋'
