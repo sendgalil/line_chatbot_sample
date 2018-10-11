@@ -19,8 +19,8 @@ task_meanu = ['search', 'suggestion']
 question_data_path = 'question_data.json'
 response_data_path = 'answer_data.json'
 
-test_chatbot = chatbot('1571536404',
-                       '2f7228546d598be49bb908b623ff2cd0',
+test_chatbot = chatbot('client_id',
+                       'client_secret',
                        question_data_path,
                        response_data_path)
 
